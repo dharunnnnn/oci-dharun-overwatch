@@ -1,0 +1,22 @@
+# /usr/lib/systemd/system/netfilter-persistent.service
+[Unit]
+Description=netfilter persistent configuration
+DefaultDependencies=no
+Wants=network-pre.target systemd-modules-load.service local-fs.target
+Before=network-pre.target shutdown.target
+After=systemd-modules-load.service local-fs.target
+Conflicts=shutdown.target
+Documentation=man:netfilter-persistent(8)
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/netfilter-persistent start
+ExecStop=/usr/sbin/netfilter-persistent stop
+
+[Install]
+WantedBy=multi-user.target
+
+# /usr/lib/systemd/system/netfilter-persistent.service.d/iptables.conf
+[Install]
+Alias=iptables.service ip6tables.service

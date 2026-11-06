@@ -1,0 +1,11 @@
+.env
+*.env
+*.key
+*.pem
+*credentials*.json
+data/
+*.tar.gz
+*.tgz
+*.db
+*.sqlite*
+kuma-export*.json

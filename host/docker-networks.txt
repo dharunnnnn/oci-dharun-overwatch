@@ -1,0 +1,4 @@
+bridge bridge
+host host
+none null
+uptime-kuma_default bridge
