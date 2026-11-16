@@ -1,19 +1,19 @@
 *raw
-:PREROUTING ACCEPT [11903145:7052013249]
-:OUTPUT ACCEPT [0:0]
+:PREROUTING ACCEPT 
+:OUTPUT ACCEPT 
 -A PREROUTING -d 172.18.0.2/32 ! -i br-e5859ca39aeb -j DROP
 COMMIT
 *filter
-:INPUT ACCEPT [0:0]
-:FORWARD DROP [0:0]
-:OUTPUT ACCEPT [7510030:8514801913]
-:DOCKER - [0:0]
-:DOCKER-BRIDGE - [0:0]
-:DOCKER-CT - [0:0]
-:DOCKER-FORWARD - [0:0]
-:DOCKER-INTERNAL - [0:0]
-:DOCKER-USER - [0:0]
-:InstanceServices - [0:0]
+:INPUT ACCEPT 
+:FORWARD DROP 
+:OUTPUT ACCEPT 
+:DOCKER - 
+:DOCKER-BRIDGE - 
+:DOCKER-CT - 
+:DOCKER-FORWARD - 
+:DOCKER-INTERNAL - 
+:DOCKER-USER - 
+:InstanceServices - 
 -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -p icmp -j ACCEPT
 -A INPUT -i lo -j ACCEPT
@@ -52,11 +52,11 @@ COMMIT
 -A InstanceServices -d 169.254.0.0/16 -p udp -m udp -m comment --comment "See the Oracle-Provided Images section in the Oracle Cloud Infrastructure documentation for security impact of modifying or removing this rule" -j REJECT --reject-with icmp-port-unreachable
 COMMIT
 *nat
-:PREROUTING ACCEPT [739018:45454826]
-:INPUT ACCEPT [0:0]
-:OUTPUT ACCEPT [881177:79934814]
-:POSTROUTING ACCEPT [881170:79934394]
-:DOCKER - [0:0]
+:PREROUTING ACCEPT 
+:INPUT ACCEPT 
+:OUTPUT ACCEPT 
+:POSTROUTING ACCEPT 
+:DOCKER - 
 -A PREROUTING -m addrtype --dst-type LOCAL -j DOCKER
 -A OUTPUT ! -d 127.0.0.0/8 -m addrtype --dst-type LOCAL -j DOCKER
 -A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE
